@@ -26,6 +26,12 @@ To install, simply::
 .. _pip: http://www.pip-installer.org
 
 
+Documentation
+================================================================================
+
+You can read the documentation at: http://pyramid_assetcompiler.readthedocs.org/
+
+
 Known Issues and Limitations
 ================================================================================
 
