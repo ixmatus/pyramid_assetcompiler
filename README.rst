@@ -38,7 +38,7 @@ Known Issues and Limitations
 * Hasn't yet been tested against Python 3 (initial versions are working concepts
   only).
 * Hasn't yet been tested against Unicode filenames (see above).
-* Kind of obvious, but you actually have to have the specified compiler command
+* Kind of obvious, but you have to actually have the specified compiler command
   installed and accessible from your working path in order for it to work.
 
 
