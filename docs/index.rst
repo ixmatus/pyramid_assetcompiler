@@ -122,11 +122,25 @@ writing:
 
 .. code-block:: python
 
+    # CoffeeScript - http://coffeescript.org/
     config.assign_compiler('coffee', 'coffee -c -p', 'js')
-    config.assign_compiler('dart', 'dart2js', 'js')
+    
+    # Dart - http://www.dartlang.org/
+    # Requires a wrapper - http://gist.github.com/98aa5e3f3d183d908caa
+    config.assign_compiler('dart', 'dart_wrapper', 'js')
+    
+    # TypeScript - http://www.typescriptlang.org/
+    # Requires a wrapper - http://gist.github.com/eaace8a89881c8ca9cda
+    config.assign_compiler('ts', 'tsc_wrapper', 'js')
+    
+    # LESS - http://lesscss.org/
     config.assign_compiler('less', 'lessc', 'css')
+    
+    # SASS/SCSS - http://sass-lang.com/
     config.assign_compiler('sass', 'sass', 'css')
     config.assign_compiler('scss', 'sass --scss', 'css')
+    
+    # UglifyJS - http://github.com/mishoo/UglifyJS
     config.assign_compiler('js', 'uglifyjs', 'js')
 
 Settings
