@@ -23,10 +23,10 @@ setup(
     author_email='seth@curiasolutions.com',
     description="Dynamic asset compiling for Pyramid. Easily adds support " + \
                 "for popular asset metalanguages such as CoffeeScript, " + \
-                "SASS, LESS, Dart, etc.",
+                "SASS, SCSS, LESS, Dart, TypeScript, etc.",
     long_description=README + '\n\n' + CHANGES,
     url='http://github.com/seedifferently/pyramid_assetcompiler',
-    keywords='web pyramid pylons assets coffeescript sass scss less dart css3',
+    keywords='pyramid assets coffeescript sass scss less dart typescript css3',
     packages=find_packages(),
     install_requires=requires,
     tests_require=requires,
