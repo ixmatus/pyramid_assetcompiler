@@ -132,8 +132,8 @@ class Compiler(object):
         )
         out, err = proc.communicate()
         
-        if err:
-            raise EnvironmentError('%s' % err)
+        if proc.returncode != 0 or err:
+            raise EnvironmentError('%s\n\n%s' % (err, out))
         else:
             new_dirname = os.path.normpath(os.path.dirname(self.new_fullpath))
             
@@ -172,8 +172,8 @@ class Compiler(object):
                     )
                     out, err = proc.communicate()
                     
-                    if err:
-                        raise EnvironmentError('%s' % err)
+                    if proc.returncode != 0 or err:
+                        raise EnvironmentError('%s\n\n%s' % (err, out))
                     else:
                         new_dirname = os.path.normpath(
                             os.path.dirname(new_fullpath)
