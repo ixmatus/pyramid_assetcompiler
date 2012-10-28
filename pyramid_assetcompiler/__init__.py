@@ -138,6 +138,39 @@ def compiled_asset_path(path, **kw):
         else:
             return request.static_path(compiler.compile())
 
+def compiled_asset_source(path, **kw):
+    """
+    Returns the source data/contents of the compiled asset (and compiles the
+    asset if needed). This is useful when you want to output inline data (e.g.
+    for inline javascript blocks).
+    
+    :param path: The Pyramid asset path to process.
+    :type path: string - Required
+    
+    :type compiler: dict or string - Optional
+    :param compiler: Allows you to override/specify a specific compiler to use
+                     (e.g. ``coffee``), or assign a brand new compiler
+                     dictionary to be used (e.g. ``{'less': {'cmd': 'less',
+                     'ext': 'css'}}``)
+    """
+    request = get_current_request()
+    settings = request.registry.settings
+    
+    compiler = Compiler(settings, path, **kw)
+    
+    if not settings.get('assetcompiler.each_request'):
+        if not compiler.compiled:
+            # log an error
+            return None
+        
+        return compiler.compiled_data()
+    else:
+        if compiler.compiled:
+            return compiler.compiled_data()
+        else:
+            compiler.compile()
+            return compiler.compiled_data()
+
 def compiled_assetpath(path, **kw):
     """
     Returns a Pyramid ``asset`` path such as ``pkg:static/path/to/file.ext``
@@ -191,6 +224,7 @@ def applicationcreated_subscriber(event):
 def beforerender_subscriber(event):
     event['compiled_asset_url'] = compiled_asset_url
     event['compiled_asset_path'] = compiled_asset_path
+    event['compiled_asset_source'] = compiled_asset_source
     event['compiled_assetpath'] = compiled_assetpath
 
 def includeme(config):

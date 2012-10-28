@@ -24,7 +24,7 @@ class Compiler(object):
         :param compiler: Allows you to either specify a specific compiler to
                          use (e.g. ``coffee``), or assign a brand new
                          compiler dictionary to be used (e.g.
-                         ``{'less': {'cmd': 'less', 'ext': 'css'}}``)
+                         ``{'less': {'cmd': 'lessc', 'ext': 'css'}}``)
         
         :type batch: bool
         :param batch: Specify that the class should prepare for a batch
@@ -184,3 +184,12 @@ class Compiler(object):
                         
                         with open(new_fullpath, 'w') as f:
                             f.write(out)
+    
+    def compiled_data(self):
+        if not self.exists:
+            raise ValueError('Source not found. Has it been compiled?')
+        
+        with open(self.new_fullpath) as f:
+            data = f.read()
+        
+        return data
