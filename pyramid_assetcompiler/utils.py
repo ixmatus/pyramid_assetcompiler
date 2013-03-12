@@ -9,7 +9,7 @@ def as_string(value):
 
 def as_cr_separated_list(value):
     if isinstance(value, string_types):
-        value = filter(None, [x.strip() for x in value.splitlines()])
+        value = [_f for _f in [x.strip() for x in value.splitlines()] if _f]
     return value
 
 def as_list(value):

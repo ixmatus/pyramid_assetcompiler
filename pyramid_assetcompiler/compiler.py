@@ -149,7 +149,7 @@ class Compiler(object):
         """
         Runs the compiler for the initialized batch of assets.
         """
-        for ext, data in self.compilers.items():
+        for ext, data in list(self.compilers.items()):
             for asset in glob.glob(os.path.join(self.fullpath, '*.%s' % ext)):
                 filename = os.path.basename(asset)
                 dirname = os.path.dirname(asset)
