@@ -141,7 +141,7 @@ class Compiler(object):
                 os.makedirs(new_dirname)
             
             with open(self.new_fullpath, 'w') as f:
-                f.write(out)
+                f.write(str(out))
             
             return self.new_path
     
