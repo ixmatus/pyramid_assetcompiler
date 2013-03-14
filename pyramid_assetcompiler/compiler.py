@@ -111,7 +111,7 @@ class Compiler(object):
             for chunk in iter(lambda: f.read(128*md5.block_size), b''): 
                 md5.update(chunk)
         # Finally, add the mtime
-        md5.update(str(os.path.getmtime(path)))
+        md5.update(str(os.path.getmtime(path)).encode("UTF-8"))
         
         # Get the first 12 characters of the hexdigest
         self.hash = md5.hexdigest()[:12]
