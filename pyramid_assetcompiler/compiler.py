@@ -122,27 +122,37 @@ class Compiler(object):
         """
         Runs the compiler for the initialized asset.
         """
-        cmd = '%s %s' % (self.compiler['cmd'], self.fullpath)
-        proc = subprocess.Popen(
-            shlex.split(cmd),
-            stdout=subprocess.PIPE,
-            stdin=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-        out, err = proc.communicate()
         
-        if proc.returncode != 0 or err:
-            raise EnvironmentError('%s\n\n%s' % (err, out))
-        else:
-            new_dirname = os.path.normpath(os.path.dirname(self.new_fullpath))
+        cmd = '%s %s > %s' % (self.compiler['cmd'], self.fullpath, self.new_fullpath)
+        
+        os.system(cmd)
+        
+        return self.new_path
+        
+        # For some reason, this code just doen't play nice!!!
+        
+        # cmd = '%s %s' % (self.compiler['cmd'], self.fullpath)
+        
+        # proc = subprocess.Popen(
+        #     shlex.split(cmd),
+        #     stdout=subprocess.PIPE,
+        #     stdin=subprocess.PIPE,
+        #     stderr=subprocess.PIPE,
+        # )
+        # out, err = proc.communicate()
+        
+        # if proc.returncode != 0 or err:
+        #     raise EnvironmentError('%s\n\n%s' % (err, out))
+        # else:
+        #     new_dirname = os.path.normpath(os.path.dirname(self.new_fullpath))
             
-            if not os.path.exists(new_dirname):
-                os.makedirs(new_dirname)
+        #     if not os.path.exists(new_dirname):
+        #         os.makedirs(new_dirname)
             
-            with open(self.new_fullpath, 'w') as f:
-                f.write(out.decode())
+        #     with open(self.new_fullpath, 'w') as f:
+        #         f.write(out.decode())
             
-            return self.new_path
+        #     return self.new_path
     
     def batch_compile(self):
         """
